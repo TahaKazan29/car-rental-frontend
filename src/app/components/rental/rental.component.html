@@ -1,0 +1,23 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Araç Adı</th>
+      <th scope="col">Kullanıcı Adı</th>
+      <th scope="col">Şirket Adı</th>
+      <th scope="col">Kiralama Tarihi</th>
+      <th scope="col">Teslim Tarihi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rental of rentals">
+      <td scope="row">{{rental.id}}</td>
+      <td>{{rental.carName}}</td>
+      <td>{{rental.userName}}</td>
+      <td>{{rental.customerName}}</td>
+      <td>{{rental.rentDate}}</td>
+      <td>{{rental.returnDate}}</td>
+    </tr>
+  </tbody>
+</table>
+

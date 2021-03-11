@@ -1,0 +1,17 @@
+ <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Marka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let brand of brands">
+      <td scope="row">{{brand.id}}</td>
+      <td>{{brand.name}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
