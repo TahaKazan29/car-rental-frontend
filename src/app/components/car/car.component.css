@@ -1,0 +1,11 @@
+.example-card {
+  max-width: 350px;
+  padding: 15px;
+}
+
+img
+{
+    width: 350px;
+    height: 230px;
+    object-fit: cover;
+}

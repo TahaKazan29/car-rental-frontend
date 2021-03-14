@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<!-- <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -11,5 +11,16 @@
       <td>{{color.name}}</td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div class="container col-md-10">
+  <div class="row">
+    <mat-selection-list #shoes [multiple]="false">
+      <mat-list-option *ngFor="let color of colors" [value]="color" routerLink="/car/color/{{color.id}}">
+          {{color.name}}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+</div>
+
 

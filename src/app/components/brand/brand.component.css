@@ -1,3 +1,20 @@
-table {
+/* table {
   width: 100%;
+} */
+
+.example-card {
+  max-width: 350px;
+  padding: 15px;
 }
+
+img
+{
+    width: 350px;
+    height: 230px;
+    object-fit: cover;
+}
+
+/* .example-header-image {
+  background-image: url('https://images.unsplash.com/photo-1547728470-3bf3fb45f453?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDl8fGJtdyUyMGxvZ298ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+  background-size: cover;
+} */

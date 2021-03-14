@@ -1,4 +1,4 @@
- <table class="table table-hover">
+ <!-- <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -11,7 +11,31 @@
       <td>{{brand.name}}</td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<!-- <mat-selection-list #shoes [multiple]="false">
+  <mat-list-option *ngFor="let brand of brands">
+    {{brand.name}}
+  </mat-list-option>
+</mat-selection-list> -->
+<!--
+<div class="container">
+  <div class="col-md-9 ">
+    <mat-card *ngFor="let brand of brands" class="mt-1">{{brand.name}}</mat-card>
+  </div>
+</div> -->
+<div class="container col-md-10">
+    <div class="row">
+      <mat-card class="example-card mt-3 me-md-3"  *ngFor="let brand of brands">
+        <mat-card-header>
+          <mat-card-title>{{brand.name}}</mat-card-title>
+          <mat-card-subtitle>Kiralık {{brand.name}} Araçları</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="brand.image">
+          <button mat-raised-button color="primary" routerLink="/car/brand/{{brand.id}}">Görüntüle</button>
+      </mat-card>
+  </div>
+</div>
 
 
 

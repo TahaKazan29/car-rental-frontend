@@ -12,7 +12,10 @@ const appRoutes: Routes = [
   {path:"color",component:ColorComponent},
   {path:"car",component:CarComponent},
   {path:"customer",component:CustomerComponent},
-  {path:"rental",component:RentalComponent}
+  {path:"rental",component:RentalComponent},
+  {path:"car/brand/:brandId",component:CarComponent},
+  {path:"car/color/:colorId",component:CarComponent},
+
 ];
 
 @NgModule({
