@@ -16,7 +16,7 @@
 <div class="container col-md-10">
   <div class="row">
     <mat-selection-list #shoes [multiple]="false">
-      <mat-list-option *ngFor="let color of colors" [value]="color" routerLink="/car/color/{{color.id}}">
+      <mat-list-option *ngFor="let color of colors" [value]="color" routerLink="/cars/color/{{color.id}}">
           {{color.name}}
       </mat-list-option>
     </mat-selection-list>

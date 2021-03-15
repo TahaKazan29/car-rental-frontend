@@ -16,6 +16,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,8 @@ import { CarComponent } from './components/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { InterceptorService } from './services/interceptor.service';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { InterceptorService } from './services/interceptor.service';
     ColorComponent,
     CarComponent,
     CustomerComponent,
-    RentalComponent
+    RentalComponent,
+    CarDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +63,7 @@ import { InterceptorService } from './services/interceptor.service';
     FormsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatTabsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

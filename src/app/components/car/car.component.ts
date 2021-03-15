@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
 import { environment } from 'src/environments/environment';
@@ -15,7 +15,7 @@ export class CarComponent implements OnInit {
   imageUrl = environment.apiURL;
   control:boolean = false;
 
-  constructor(private carService:CarService,private activatedRoute:ActivatedRoute) { }
+  constructor(private carService:CarService,private activatedRoute:ActivatedRoute,private route:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -43,7 +43,8 @@ export class CarComponent implements OnInit {
   {
     this.carService.getCarsByBrand(brandId).subscribe(response => {
       this.cars = response.data;
-      this.cars.length <= 0 ? this.control = true : false;
+      this.cars.length == 0 ? this.control = true : false;
+      console.log(this.control);
     })
   }
 
@@ -53,6 +54,11 @@ export class CarComponent implements OnInit {
       this.cars = response.data;
       this.cars.length <= 0 ? this.control = true : false;
     })
+  }
+
+  getRoute(carId:number)
+  {
+    this.route.navigateByUrl("/cars/"+carId+"/detail");
   }
 
 }
