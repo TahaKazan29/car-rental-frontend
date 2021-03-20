@@ -14,9 +14,18 @@
 </table> -->
 
 <div class="container col-md-10">
+
+  <div class="mb-3">
+    <h2 class="form-label mt-3">Renk ara</h2>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
+  </div>
+  <div *ngIf="filterText" class="alert alert-primary">
+    {{filterText}} aradınız
+  </div>
+
   <div class="row">
     <mat-selection-list #shoes [multiple]="false">
-      <mat-list-option *ngFor="let color of colors" [value]="color" routerLink="/cars/color/{{color.id}}">
+      <mat-list-option *ngFor="let color of colors | colorFilter:filterText" [value]="color" routerLink="/cars/color/{{color.id}}">
           {{color.name}}
       </mat-list-option>
     </mat-selection-list>

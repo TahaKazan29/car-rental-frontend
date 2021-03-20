@@ -1,0 +1,94 @@
+<!-- <app-car-detail [car]="car"></app-car-detail> -->
+
+<div class="container mt-3">
+
+
+
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Boş Bırakılamaz">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Tarih Bilgileri</ng-template>
+
+
+        <div class="row">
+
+          <div class="col-md-3">
+            <app-customer-selection (newItemEvent)="addRental($event)"></app-customer-selection><br>
+          </div>
+
+          <div class="col-md-9">
+
+          </div>
+        </div>
+
+
+        <div class="col-md-2" style="margin-bottom: 20px;">
+          <label style="margin-bottom:10px;">Başlangıç Tarihi</label>
+        <input type="datetime-local" class="form-control" id="rentalStartDateTime" formControlName="rentDate"/>
+        <label style="margin-bottom:10px;margin-top: 10px;">Bitiş Tarihi</label>
+        <input type="datetime-local" class="form-control" id="rentalStartDateTime" formControlName="returnDate"/>
+        </div>
+
+
+        <div>
+          <!-- <p>Tarih Seçimine Dikkat Ediniz</p> -->
+          <button mat-button matStepperNext (click)="addRental(customer);paymentFee()">İleri</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Boş Bırakılamaz">
+      <form [formGroup]="secondFormGroup" >
+        <div class="row">
+          <div class="col-md-2">
+            <ng-template matStepLabel>Kart Bilgileri</ng-template>
+            <mat-form-field>
+              <mat-label>Kart Üzerindeki İsim ve Soyisim</mat-label>
+              <input matInput placeholder="İsim Soyisim" formControlName="nameOnTheCard" required/>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2">
+            <mat-form-field>
+              <mat-label>Kart Numarası</mat-label>
+              <input matInput placeholder="Kart Numarası" formControlName="cardNumber" required/>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <h2 style="margin-left:200px">Ödenecek Tutar</h2>
+              <h3 style="margin-left:230px">{{payment}}  TL</h3>
+          </div>
+
+
+        </div>
+
+
+        <br>
+
+
+
+
+        <mat-form-field style="margin-right: 30px;">
+          <mat-label>Son Kullanma Tarihi</mat-label>
+          <input matInput placeholder="Ay/Yıl" formControlName="expirationDate" required/>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>CVV</mat-label>
+          <input matInput placeholder="CVV" formControlName="cvv" required/>
+        </mat-form-field>
+        <div>
+          <p>Bilgilerin Doğru Olduğundan Emin misin ?</p>
+          <button mat-button matStepperPrevious>Geri</button>
+          <button mat-button matStepperNext (click)="addBank()">Onayla</button>
+        </div>
+      </form >
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+</div>
+

@@ -4,7 +4,7 @@ import { Car } from 'src/app/models/car';
 import { CarImages } from 'src/app/models/carImages';
 import { CarService } from 'src/app/services/car.service';
 import { environment } from 'src/environments/environment';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @Component({
@@ -36,8 +36,7 @@ export class CarDetailComponent implements OnInit {
     this.carService.getCarsForDetail(carId).subscribe(response => {
       this.car = response.data;
       this.carImages = response.data.carImages;
-      console.log(this.car.carImages);
-      console.log(this.car);
+      // console.log(this.car);
     })
   }
 

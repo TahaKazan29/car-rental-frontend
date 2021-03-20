@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
+import { Color } from 'src/app/models/color';
+import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
+import { ColorService } from 'src/app/services/color.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,24 +16,43 @@ import { environment } from 'src/environments/environment';
 export class CarComponent implements OnInit {
 
   cars:Car[] = [];
+  brands:Brand[] = [];
+  colors:Color[] = [];
   imageUrl = environment.apiURL;
   control:boolean = false;
+  filterText = "";
+  selectedBrand:number;
+  selectedColor:number;
 
-  constructor(private carService:CarService,private activatedRoute:ActivatedRoute,private route:Router) { }
+  constructor(private carService:CarService,
+    private activatedRoute:ActivatedRoute,
+    private route:Router,
+    private brandService:BrandService,
+    private colorService:ColorService
+    ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      if(params["brandId"]){
-        this.getCarsByBrand(params["brandId"]);
+       if (params["brandId"] && params["colorId"])
+      {
+        this.getCarsByFilter();
       }
-      else if (params["colorId"])
+      else if(params["colorId"])
       {
         this.getCarsByColor(params["colorId"]);
+        this.getCarsByFilter();
+      }
+      else if (params["brandId"])
+      {
+        this.getCarsByBrand(params["brandId"]);
+        this.getCarsByFilter();
       }
       else {
         this.getCars();
       }
     })
+    this.getBrands();
+    this.getColors();
   }
 
   getCars()
@@ -60,6 +83,28 @@ export class CarComponent implements OnInit {
   {
     this.route.navigateByUrl("/cars/"+carId+"/detail");
   }
+
+  getBrands()
+  {
+    this.brandService.getBrands().subscribe(response => {
+      this.brands = response.data;
+    })
+  }
+
+  getColors()
+  {
+    this.colorService.getColors().subscribe(response => {
+      this.colors = response.data;
+    })
+  }
+
+  getCarsByFilter()
+  {
+    this.carService.getCarsByFilter(this.selectedBrand,this.selectedColor).subscribe(response => {
+      this.cars = response.data;
+    })
+  }
+
 
 }
 

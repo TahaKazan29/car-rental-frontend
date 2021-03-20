@@ -13,10 +13,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +32,18 @@ import { RentalComponent } from './components/rental/rental.component';
 import { InterceptorService } from './services/interceptor.service';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { HomeComponent } from './components/home/home.component';
+import { CarFilterPipePipe } from './components/pipes/carFilter-pipe.pipe';
+import { BrandFilterPipe } from './components/pipes/brand-filter.pipe';
+import { ColorFilterPipe } from './components/pipes/color-filter.pipe';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { HireComponent } from './components/hire/hire.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { CustomerSelectionComponent } from './components/customer/customer-selection/customer-selection.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -42,7 +56,12 @@ import { HomeComponent } from './components/home/home.component';
     CustomerComponent,
     RentalComponent,
     CarDetailComponent,
-    HomeComponent
+    HomeComponent,
+    CarFilterPipePipe,
+    BrandFilterPipe,
+    ColorFilterPipe,
+    HireComponent,
+    CustomerSelectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,10 +82,22 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right"
+    })
+
+
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
   ],
   bootstrap: [AppComponent]
 })

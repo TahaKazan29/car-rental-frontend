@@ -1,0 +1,6 @@
+<mat-form-field appearance="fill" style="margin-right: 5px;">
+  <mat-label>Müşteri</mat-label>
+  <mat-select disableRipple>
+    <mat-option  [value]="customer" *ngFor="let customer of customers" (click)="addNewItem(customer)">{{customer.companyName}}</mat-option>
+  </mat-select>
+</mat-form-field>

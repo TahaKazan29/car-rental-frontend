@@ -1,12 +1,37 @@
 <div class="container col-md-10">
+
+  <div class="mb-3">
+    <h2 class="form-label mt-3">Araç ara</h2>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
+  </div>
+  <div *ngIf="filterText" class="alert alert-primary">
+    {{filterText}} aradınız
+  </div>
+
+  <mat-form-field appearance="fill" style="margin-right: 5px;">
+    <mat-label>Marka Seçiniz</mat-label>
+    <mat-select [(value)]="selectedBrand" disableRipple>
+      <mat-option  [value]="brand.id" *ngFor="let brand of brands" >{{brand.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="margin-right: 15px;">
+    <mat-label>Renk Seçiniz</mat-label>
+    <mat-select [(value)]="selectedColor"  disableRipple>
+      <mat-option [value]="color.id" *ngFor="let color of colors" >{{color.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="getCarsByFilter()">Filtrele</button>
+
   <div class="row">
-    <mat-card class="example-card mt-3 me-md-3"  *ngFor="let car of cars">
+    <mat-card class="example-card mt-3 me-md-3"  *ngFor="let car of cars | filterPipe:filterText">
       <mat-card-header>
         <mat-card-title>{{car.brandName}} {{car.description}}</mat-card-title>
         <mat-card-subtitle>Kiralık {{car.brandName}} Araçları</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="{{imageUrl}}{{car.imagePath}}">
-        <button mat-raised-button color="primary" (click)="getRoute(car.id)">Görüntülee</button>
+        <button mat-raised-button color="primary" (click)="getRoute(car.id)">Görüntüle</button>
       </mat-card>
       <h2 *ngIf="control" class="mt-4">Filtreye Uygun Araç Bulunamadı</h2>
 </div>

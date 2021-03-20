@@ -1,6 +1,6 @@
 import { CarImages } from "./carImages";
 
-export interface Car {
+export class Car {
   id:number;
   brandName:string;
   colorName:string;

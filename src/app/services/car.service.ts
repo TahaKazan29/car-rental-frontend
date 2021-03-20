@@ -34,4 +34,15 @@ export class CarService {
     return this.httpClient.get<ItemResponseModel<Car>>(newPath);
   }
 
+  getCarsByFilter(brandId:number,colorId:number):Observable<ListResponseModel<Car>> {
+    let newPath:string = "";
+    if(brandId != undefined && colorId != undefined)
+    newPath = this.apiUrl + "cars/getcarsbyfilter?brandId=" + brandId + "&colorId=" + colorId;
+    else if(brandId != undefined)
+    newPath = this.apiUrl + "cars/getcarsbyfilter?brandId=" + brandId;
+    else if(colorId != undefined)
+    newPath = this.apiUrl + "cars/getcarsbyfilter?colorId=" + colorId;
+    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+
 }

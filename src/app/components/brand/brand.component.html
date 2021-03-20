@@ -25,8 +25,17 @@
   </div>
 </div> -->
 <div class="container col-md-10">
+
+  <div class="mb-3">
+    <h2 class="form-label mt-3">Marka ara</h2>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
+  </div>
+  <div *ngIf="filterText" class="alert alert-primary">
+    {{filterText}} aradınız
+  </div>
+
     <div class="row">
-      <mat-card class="example-card mt-3 me-md-3"  *ngFor="let brand of brands">
+      <mat-card class="example-card mt-3 me-md-3"  *ngFor="let brand of brands | brandFilter:filterText">
         <mat-card-header>
           <mat-card-title>{{brand.name}}</mat-card-title>
           <mat-card-subtitle>Kiralık {{brand.name}} Araçları</mat-card-subtitle>

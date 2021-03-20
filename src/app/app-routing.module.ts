@@ -5,6 +5,7 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { CarComponent } from './components/car/car.component';
 import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { HireComponent } from './components/hire/hire.component';
 import { HomeComponent } from './components/home/home.component';
 import { RentalComponent } from './components/rental/rental.component';
 
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
   {path:"cars/brand/:brandId",component:CarComponent},
   {path:"cars/color/:colorId",component:CarComponent},
   {path:"cars/:carId/detail",component:CarDetailComponent},
-
+  {path:"cars/:carId/hire",component:HireComponent},
+  {path:"cars/:rentId/hire",component:HireComponent},
 ];
 
 @NgModule({

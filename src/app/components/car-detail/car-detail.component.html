@@ -1,6 +1,7 @@
     <div class="container">
-      <div class="col-md-9 row mx-auto justify-content-center align-items-center flex-column">
-      <mat-card class="card-header text-center mt-3"><h3><b>{{car.brandName}} {{car.description}}</b></h3></mat-card>
+
+      <div class="col-md-9 row mx-auto justify-content-center align-items-center flex-column" *ngIf="car">
+      <mat-card class="card-header text-center mt-3" ><h3><b>{{car.brandName}} {{car.description}}</b></h3></mat-card>
       <div class="card-body">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -17,7 +18,7 @@
               <span class="visually-hidden">Next</span>
             </button>
         </div>
-       <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+       <mat-tab-group  mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
         <mat-tab label="Marka"> <p class="mt-3">{{car.brandName}}</p> </mat-tab>
         <mat-tab label="Model"> <p class="mt-3">{{car.modelYear}}</p> </mat-tab>
         <mat-tab label="Renk"> <p class="mt-3">{{car.colorName}}</p> </mat-tab>
@@ -25,6 +26,7 @@
         <mat-tab label="Açıklama"> <p class="mt-3">{{car.description}}</p> </mat-tab>
       </mat-tab-group>
     </div>
+    <button mat-flat-button color="primary" routerLink="/cars/{{car.id}}/hire">Kirala</button>
       </div>
     </div>
 
