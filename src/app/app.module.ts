@@ -18,7 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatStepperModule} from '@angular/material/stepper';
-
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +43,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { CustomerSelectionComponent } from './components/customer/customer-selection/customer-selection.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorEditComponent } from './components/color-edit/color-edit.component';
+import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 
 
 
@@ -62,6 +69,13 @@ import { ToastrModule } from 'ngx-toastr';
     ColorFilterPipe,
     HireComponent,
     CustomerSelectionComponent,
+    CarAddComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    ColorEditComponent,
+    BrandEditComponent,
+    CarEditComponent,
+    CarImageAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +106,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatNativeDateModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
-    })
+    }),
+    FileUploadModule
 
 
   ],

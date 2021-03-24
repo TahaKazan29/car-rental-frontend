@@ -1,13 +1,12 @@
 import { CarImages } from "./carImages";
 
-export class Car {
-
+export class CarDetail {
   id:number;
-  brandId:number;
-  colorId:number;
-  modelYear:string;
+  brandName:string;
+  colorName:string;
   dailyPrice:number;
+  modelYear:string;
   description:string;
+  imagePath:string;
   carImages:CarImages[];
-
 }

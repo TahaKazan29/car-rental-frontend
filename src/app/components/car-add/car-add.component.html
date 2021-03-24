@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="col-md-12">
+
+    <mat-card class="example-card mt-3">
+      <div class="col-md-6 mx-auto justify-content-center align-items-center flex-column" style="padding-left: 100px;">
+        <mat-card-header>
+          <mat-card-title class="mb-4 mt-3" style="padding-left: 120px;">Araç Ekle</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="carAddForm">
+
+            <div class="form-group">
+              <mat-form-field appearance="fill" class="example-form-select">
+                <mat-label>Marka Seçiniz</mat-label>
+                <mat-select formControlName="brandId">
+                  <mat-option *ngFor="let brand of brands" id="brandId"  [value]="brand.id">
+                    {{brand.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="example-form-select">
+                  <mat-label>Renk Seçiniz</mat-label>
+                  <mat-select formControlName="colorId">
+                    <mat-option *ngFor="let color of colors" id="colorId"  [value]="color.id">
+                      {{color.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="example-form-field">
+                <mat-label>Modeli</mat-label>
+                <input matInput type="text" id="modelYear" formControlName="modelYear"/>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="example-form-field">
+                <mat-label>Günlük Kira Fiyatı</mat-label>
+                <input matInput type="number" id="dailyPrice" formControlName="dailyPrice"/>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="example-form-field">
+                <mat-label>Açıklaması</mat-label>
+                <input matInput type="text" id="description" formControlName="description"/>
+              </mat-form-field>
+            </div>
+
+        </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" style="margin-left:350px" (click)="add()" >Ekle</button>
+        </mat-card-actions>
+      </div>
+    <app-car-image-add [carId]="carId"></app-car-image-add>
+
+    </mat-card>
+  </div>
+</div>
+
+

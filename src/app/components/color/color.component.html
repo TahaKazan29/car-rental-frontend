@@ -15,7 +15,7 @@
 
 <div class="container col-md-10">
 
-  <div class="mb-3">
+  <div class="mb-3 col-md-11">
     <h2 class="form-label mt-3">Renk ara</h2>
     <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
   </div>
@@ -23,10 +23,22 @@
     {{filterText}} aradınız
   </div>
 
-  <div class="row">
+  <div class="col-md-11 mb-3" >
+    <button mat-flat-button color="primary"  routerLink="/colors/add">Renk Ekle</button>
+  </div>
+
+  <div class="row col-md-11">
     <mat-selection-list #shoes [multiple]="false">
       <mat-list-option *ngFor="let color of colors | colorFilter:filterText" [value]="color" routerLink="/cars/color/{{color.id}}">
-          {{color.name}}
+        <div class="row">
+          <div class="col-md-9" >
+            <p class="pt-2">{{color.name}}</p>
+          </div>
+          <div class="col-md-3">
+           <button mat-flat-button color="primary" style="float:right"routerLink="/colors/{{color.id}}/edit">Güncelle</button>
+          </div>
+        </div>
+
       </mat-list-option>
     </mat-selection-list>
   </div>

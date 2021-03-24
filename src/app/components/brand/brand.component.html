@@ -26,12 +26,16 @@
 </div> -->
 <div class="container col-md-10">
 
-  <div class="mb-3">
+  <div class="mb-3 col-md-11">
     <h2 class="form-label mt-3">Marka ara</h2>
     <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
   </div>
   <div *ngIf="filterText" class="alert alert-primary">
     {{filterText}} aradınız
+  </div>
+
+  <div class="col-md-11">
+    <button mat-flat-button color="primary"  routerLink="/brands/add">Marka Ekle</button>
   </div>
 
     <div class="row">
@@ -42,6 +46,7 @@
         </mat-card-header>
         <img mat-card-image [src]="brand.image">
           <button mat-raised-button color="primary" routerLink="/cars/brand/{{brand.id}}">Görüntüle</button>
+          <button mat-raised-button color="primary" style="float:right" routerLink="/cars/brand/{{brand.id}}/edit">Güncelle</button>
       </mat-card>
   </div>
 </div>

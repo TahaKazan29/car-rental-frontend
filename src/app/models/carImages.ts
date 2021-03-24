@@ -1,4 +1,4 @@
-export interface CarImages
+export class CarImages
 {
   id:number;
   carId:number;

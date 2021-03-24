@@ -7,7 +7,7 @@ import { Customer } from 'src/app/models/customer';
 import { CarService } from 'src/app/services/car.service';
 import { Rental } from 'src/app/models/rental';
 import { RentalService } from 'src/app/services/rental.service';
-import { Car } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/carDetail';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -25,7 +25,7 @@ export class HireComponent implements OnInit {
   customer:Customer;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  car:Car = new Car();
+  car:CarDetail = new CarDetail();
   payment:number;
 
   constructor(private formBuilder: FormBuilder,
