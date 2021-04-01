@@ -1,94 +1,134 @@
-<!-- <app-car-detail [car]="car"></app-car-detail> -->
-
 <div class="container mt-3">
 
 
 
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup" errorMessage="Boş Bırakılamaz">
-      <form [formGroup]="firstFormGroup">
+
         <ng-template matStepLabel>Tarih Bilgileri</ng-template>
-
-
-        <div class="row">
-
-          <div class="col-md-3">
-            <app-customer-selection (newItemEvent)="addRental($event)"></app-customer-selection><br>
-          </div>
-
-          <div class="col-md-9">
-
-          </div>
-        </div>
-
-
-        <div class="col-md-2" style="margin-bottom: 20px;">
-          <label style="margin-bottom:10px;">Başlangıç Tarihi</label>
-        <input type="datetime-local" class="form-control" id="rentalStartDateTime" formControlName="rentDate"/>
-        <label style="margin-bottom:10px;margin-top: 10px;">Bitiş Tarihi</label>
-        <input type="datetime-local" class="form-control" id="rentalStartDateTime" formControlName="returnDate"/>
-        </div>
-
-
-        <div>
-          <!-- <p>Tarih Seçimine Dikkat Ediniz</p> -->
-          <button mat-button matStepperNext (click)="addRental(customer);paymentFee()">İleri</button>
-        </div>
-      </form>
+        <div class="card mt-50 mb-50">
+          <div class="card-title mx-auto mb-5" style="color: black;"> Tarih </div>
+          <form [formGroup]="firstFormGroup">
+              <div class="row-1">
+                  <div class="row row-2"> <span id="card-inner">Şirket Adı</span> </div>
+                  <div class="row row-2"> <input type="text" placeholder="Örn Kazanlar" formControlName="companyName"> </div>
+              </div>
+               <span id="card-header" style="color:black;">Aracı Kiralayacağınız Tarih:</span>
+              <div class="row-1">
+                  <div class="row row-2"> <span id="card-inner">Kiralama Tarihi</span> </div>
+                  <div class="row row-2"> <input type="datetime-local" formControlName="rentDate"> </div>
+              </div>
+              <span id="card-header" style="color:black;">Aracı Teslim Edeceğiniz Tarih:</span>
+              <div class="row-1">
+                <div class="row row-2"> <span id="card-inner">Teslim Tarihi</span> </div>
+                <div class="row row-2"> <input type="datetime-local" formControlName="returnDate"> </div>
+              </div>
+              <button matStepperNext class="btn d-flex mx-auto" (click)="paymentFee()"><b>İleri</b></button>
+          </form>
+      </div>
     </mat-step>
-
 
 
     <mat-step [stepControl]="secondFormGroup" errorMessage="Boş Bırakılamaz">
-      <form [formGroup]="secondFormGroup" >
-        <div class="row">
-          <div class="col-md-2">
-            <ng-template matStepLabel>Kart Bilgileri</ng-template>
-            <mat-form-field>
-              <mat-label>Kart Üzerindeki İsim ve Soyisim</mat-label>
-              <input matInput placeholder="İsim Soyisim" formControlName="nameOnTheCard" required/>
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-2">
-            <mat-form-field>
-              <mat-label>Kart Numarası</mat-label>
-              <input matInput placeholder="Kart Numarası" formControlName="cardNumber" required/>
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-6">
-            <h2 style="margin-left:200px">Ödenecek Tutar</h2>
-              <h3 style="margin-left:230px">{{payment}}  TL</h3>
-          </div>
-
-
+      <ng-template matStepLabel>Kart Bilgileri</ng-template>
+      <div class="card mt-50 mb-50">
+        <div class="card-title mx-auto" style="color: black;"> Ödeme </div>
+        <div class="nav">
+            <ul class="mx-auto">
+                <li class="active"><a href="#">Kredi Kartı</a></li>
+            </ul>
         </div>
+        <form [formGroup]="secondFormGroup">
+          <div *ngIf="creditCards.length > 0">
+            <span id="card-header" style="color: black;">Kayıtlı Kartlar:</span>
+            <div class="row row-1" style="padding:0" *ngFor="let creditCard of creditCards">
+              <div (click)="savedCard(creditCard,content)" style="cursor: pointer;" class="col-md-10">
+                <div class="row">
+                  <div class="col-2" ><img class="img-fluid" src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /></div>
+                  <div class="col-md-10" style="color:black;text-align:center;padding-top: 13px;"><strong>{{creditCard.nameOnTheCard}} {{creditCard.cardNumber}}</strong></div>
+                </div>
+              </div>
+              <div (click)="removeCard(creditCard)" class="col-2 d-flex justify-content-center" style="border-top-right-radius: 5px;background-color: crimson;cursor: pointer;"><div style="color: white;font-weight: bold;padding-right: 7px;">Kartı Sil</div> </div>
+            </div>
+          </div>
 
-
-        <br>
-
-
-
-
-        <mat-form-field style="margin-right: 30px;">
-          <mat-label>Son Kullanma Tarihi</mat-label>
-          <input matInput placeholder="Ay/Yıl" formControlName="expirationDate" required/>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>CVV</mat-label>
-          <input matInput placeholder="CVV" formControlName="cvv" required/>
-        </mat-form-field>
-        <div>
-          <p>Bilgilerin Doğru Olduğundan Emin misin ?</p>
-          <button mat-button matStepperPrevious>Geri</button>
-          <button mat-button matStepperNext (click)="addBank()">Onayla</button>
-        </div>
-      </form >
+            <!-- <div class="row row-1">
+                <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/visa.png" /></div>
+                <div class="col-7"> <input type="text" placeholder="**** **** **** 4296"> </div>
+                <div class="col-3 d-flex justify-content-center"> <a href="#">Kartı Sil</a> </div>
+            </div>  -->
+            <span id="card-header" style="color:black;">Yeni Kart İle Ödeme Yap:</span>
+            <div class="row-1">
+                <div class="row row-2"> <span id="card-inner">Kart Sahibi</span> </div>
+                <div class="row row-2"> <input type="text" placeholder="Ad Soyad" formControlName="nameOnTheCard"> </div>
+            </div>
+            <div class="row-1">
+              <div class="row row-2"> <span id="card-inner">Kart Numarası</span> </div>
+              <div class="row row-2"> <input type="text" placeholder="1234 5678 9101 2131" formControlName="cardNumber"> </div>
+            </div>
+            <div class="row">
+              <div class="row-1" style="width: 170px;">
+                <div class="row row-2"> <span id="card-inner">Son Kullanma Tarihi</span> </div>
+                <div class="row row-2"> <input type="text" placeholder="Ay/Yıl" formControlName="expirationDate"> </div>
+              </div>
+              <div class="row-1" style="width: 170px;margin-left: 145px;">
+                <div class="row row-2"> <span id="card-inner">CVV</span> </div>
+                <div class="row row-2"> <input type="text" placeholder="***" formControlName="cvv"> </div>
+              </div>
+            </div>
+            <mat-card *ngIf="payment > 0" class="mt-3" style="background-color: cadetblue;font-weight: bold;">Ödenecek Tutar <span style="float:right;font-weight: bold;">{{payment}} ₺</span></mat-card>
+            <button class="btn d-flex mx-auto" (click)="open(content)"><b>Ödemeyi Tamamla</b></button>
+        </form>
+    </div>
     </mat-step>
-
   </mat-horizontal-stepper>
-
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h2 class="modal-title" id="modal-basic-title"><strong>Bize Yardımcı Ol</strong></h2>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h3 class="mt-3">Aracı Kiralayabilmen İçin Findeks Puanını Sorgulamamız Gerekir</h3>
+    <div class="row row-2"> <span id="card-inner">TC Kimlik Numaranız</span> </div>
+    <input type="text" class="form-control" placeholder="11 Haneli TC" id="tc" name="tc" [(ngModel)]="creditNote.tc">
+  </div>
+  <div class="modal-footer">
+    <div class="col-md-12 row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Kapat</button>
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-outline-dark" (click)="addBank();close(content);cardRegistrationQuestion(contentt)">Sorgula</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contentt let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h2 class="modal-title" id="modal-basic-title"><strong>Kredi Kartını Kaydetmek İstiyor Musun ?</strong></h2>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12 row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Hayır</button>
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-outline-dark" (click)="cardSaved();close(contentt);">Evet</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
 

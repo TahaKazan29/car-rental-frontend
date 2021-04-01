@@ -24,7 +24,7 @@
   </div>
 
   <div class="col-md-11 mb-3" >
-    <button mat-flat-button color="primary"  routerLink="/colors/add">Renk Ekle</button>
+    <button *ngIf="authService.roleControl() == true" mat-flat-button color="primary"  routerLink="/colors/add">Renk Ekle</button>
   </div>
 
   <div class="row col-md-11">
@@ -35,7 +35,7 @@
             <p class="pt-2">{{color.name}}</p>
           </div>
           <div class="col-md-3">
-           <button mat-flat-button color="primary" style="float:right"routerLink="/colors/{{color.id}}/edit">Güncelle</button>
+           <button *ngIf="authService.roleControl() == true" mat-flat-button color="primary" style="float:right"routerLink="/colors/{{color.id}}/edit">Güncelle</button>
           </div>
         </div>
 

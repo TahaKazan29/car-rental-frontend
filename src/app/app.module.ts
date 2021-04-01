@@ -29,12 +29,12 @@ import { ColorComponent } from './components/color/color.component';
 import { CarComponent } from './components/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
-import { InterceptorService } from './services/interceptor.service';
-import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { LoadInterceptor } from './components/interceptors/loadInterceptor';
+import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { HomeComponent } from './components/home/home.component';
-import { CarFilterPipePipe } from './components/pipes/carFilter-pipe.pipe';
-import { BrandFilterPipe } from './components/pipes/brand-filter.pipe';
-import { ColorFilterPipe } from './components/pipes/color-filter.pipe';
+import { CarFilterPipePipe } from './pipes/carFilter-pipe.pipe';
+import { BrandFilterPipe } from './pipes/brand-filter.pipe';
+import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -43,14 +43,22 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { CustomerSelectionComponent } from './components/customer/customer-selection/customer-selection.component';
 import { ToastrModule } from 'ngx-toastr';
-import { CarAddComponent } from './components/car-add/car-add.component';
-import { BrandAddComponent } from './components/brand-add/brand-add.component';
-import { ColorAddComponent } from './components/color-add/color-add.component';
-import { ColorEditComponent } from './components/color-edit/color-edit.component';
-import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
-import { CarEditComponent } from './components/car-edit/car-edit.component';
-import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
-
+import { CarAddComponent } from './components/car/car-add/car-add.component';
+import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color/color-add/color-add.component';
+import { ColorEditComponent } from './components/color/color-edit/color-edit.component';
+import { BrandEditComponent } from './components/brand/brand-edit/brand-edit.component';
+import { CarEditComponent } from './components/car/car-edit/car-edit.component';
+import { CarImageAddComponent } from './components/car/car-image-add/car-image-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthInterceptor } from './components/interceptors/auth.interceptor';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
+import { MDBBootstrapModule, DropdownModule } from 'angular-bootstrap-md';
+import { ModalModule, TooltipModule, PopoverModule, ButtonsModule } from 'angular-bootstrap-md'
+import { LocalStroageService } from './services/localStroage.service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -76,6 +84,10 @@ import { CarImageAddComponent } from './components/car-image-add/car-image-add.c
     BrandEditComponent,
     CarEditComponent,
     CarImageAddComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +116,12 @@ import { CarImageAddComponent } from './components/car-image-add/car-image-add.c
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ModalModule,
+    TooltipModule,
+    PopoverModule,
+    ButtonsModule,
+    MDBBootstrapModule.forRoot(),
+    DropdownModule.forRoot(),
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
     }),
@@ -112,7 +130,9 @@ import { CarImageAddComponent } from './components/car-image-add/car-image-add.c
 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    LocalStroageService
   ],
   bootstrap: [AppComponent]
 })

@@ -23,7 +23,7 @@
   </mat-form-field>
 
   <button mat-flat-button color="primary" (click)="getCarsByFilter()">Filtrele</button>
-  <button mat-flat-button color="primary" style="float:right;margin-right:100px" routerLink="/cars/add">Araç Ekle</button>
+  <button *ngIf="authService.roleControl() == true" mat-flat-button color="primary" style="margin-left: 10px;" routerLink="/cars/add">Araç Ekle</button>
 
   <div class="row">
     <mat-card class="example-card mt-3 me-md-3"  *ngFor="let car of cars | filterPipe:filterText">
@@ -33,7 +33,7 @@
       </mat-card-header>
       <img mat-card-image src="{{imageUrl}}{{car.imagePath}}">
         <button mat-raised-button color="primary" (click)="getRoute(car.id)">Görüntüle</button>
-        <button mat-raised-button color="primary" style="float:right" (click)="getRouteEdit(car.id)">Güncelle</button>
+        <button *ngIf="authService.roleControl() == true" mat-raised-button color="primary" style="float:right" (click)="getRouteEdit(car.id)">Güncelle</button>
       </mat-card>
       <h2 *ngIf="control" class="mt-4">Filtreye Uygun Araç Bulunamadı</h2>
 </div>

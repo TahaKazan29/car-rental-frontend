@@ -9,4 +9,5 @@ export class CarDetail {
   description:string;
   imagePath:string;
   carImages:CarImages[];
+  findeksValue:number;
 }

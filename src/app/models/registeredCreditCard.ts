@@ -1,8 +1,10 @@
-export class Bank {
+export class RegisteredCreditCard {
+
   id:number;
-  rentId: number;
+  customerId:number;
   nameOnTheCard: string;
   cardNumber: string;
   expirationDate: string;
   cvv: string;
+
 }

@@ -35,7 +35,7 @@
   </div>
 
   <div class="col-md-11">
-    <button mat-flat-button color="primary"  routerLink="/brands/add">Marka Ekle</button>
+    <button *ngIf="authService.roleControl() == true" mat-flat-button color="primary"  routerLink="/brands/add">Marka Ekle</button>
   </div>
 
     <div class="row">
@@ -46,7 +46,7 @@
         </mat-card-header>
         <img mat-card-image [src]="brand.image">
           <button mat-raised-button color="primary" routerLink="/cars/brand/{{brand.id}}">Görüntüle</button>
-          <button mat-raised-button color="primary" style="float:right" routerLink="/cars/brand/{{brand.id}}/edit">Güncelle</button>
+          <button *ngIf="authService.roleControl() == true" mat-raised-button color="primary" style="float:right" routerLink="/cars/brand/{{brand.id}}/edit">Güncelle</button>
       </mat-card>
   </div>
 </div>

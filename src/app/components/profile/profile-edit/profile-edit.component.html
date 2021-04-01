@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-title class="mb-4 mt-3">Profili Düzenle</mat-card-title>
+<mat-card-content>
+<form *ngIf="user">
+<p>
+  <mat-form-field>
+    <input type="text" matInput placeholder="İsim" id="firstName" name="firstName" [(ngModel)]="user.firstName">
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Soyisim" id="lastName" name="lastName" [(ngModel)]="user.lastName">
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field>
+    <input type="text" matInput placeholder="E-mail" id="email" name="email" [(ngModel)]="user.email">
+  </mat-form-field>
+</p>
+
+
+<div class="button mb-2">
+  <button type="submit" mat-button (click)="display(change)">Şifre Değiştir</button>
+  <button type="submit" mat-button (click)="update()" style="float:right;">Kaydet</button>
+</div>
+
+
+<div [class]="getChange(change)" #change >
+  <form [formGroup]="passwordForm">
+    <p>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Eski Şifre" id="oldpassword" name="oldpassword" formControlName="oldPassword">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Yeni Şifre" id="newPassword" name="newPassword" formControlName="newPassword">
+      </mat-form-field>
+    </p>
+
+    <div class="button">
+      <button type="submit" mat-button (click)="updatePassword()" style="float:right;">Kaydet</button>
+    </div>
+  </form>
+</div>
+
+
+</form>
+</mat-card-content>
+</mat-card>

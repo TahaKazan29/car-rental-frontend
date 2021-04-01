@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from '../models/customer';
@@ -21,6 +21,16 @@ export class CustomerService {
   getCustomer(customerId:number):Observable<ItemResponseModel<Customer>> {
     let newPath = this.apiUrl + customerId;
     return this.httpClient.get<ItemResponseModel<Customer>>(newPath);
+  }
+
+  getCustomerByUserId(userId:number):Observable<ItemResponseModel<Customer>> {
+    let newPath = this.apiUrl + "getbyuserid/" + userId;
+    return this.httpClient.get<ItemResponseModel<Customer>>(newPath);
+  }
+
+  add(customer: Customer): Observable<ItemResponseModel<Customer>> {
+    let newPath = this.apiUrl + "add";
+    return this.httpClient.post<ItemResponseModel<Customer>>(newPath,customer);
   }
 
 }

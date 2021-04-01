@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -29,6 +32,8 @@ export class NavComponent implements OnInit {
   storeThemeSelection() {
     localStorage.setItem('theme', this.isDarkTheme ? "Dark" : "Light");
   }
+
+
 
 }
 

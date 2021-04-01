@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title class="mb-4 mt-3">Kayıt Ol</mat-card-title>
+<mat-card-content>
+<form [formGroup]="registerForm">
+<p>
+  <mat-form-field>
+    <input type="text" matInput placeholder="İsim" formControlName="firstName">
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Soyisim" formControlName="lastName">
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field>
+    <input type="text" matInput placeholder="E-mail" formControlName="email">
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field>
+    <input type="password" matInput placeholder="Şifre" formControlName="password">
+  </mat-form-field>
+</p>
+
+
+<div class="button">
+  <button type="submit" mat-button (click)="register()">Kayıt Ol</button>
+</div>
+
+</form>
+</mat-card-content>
+</mat-card>

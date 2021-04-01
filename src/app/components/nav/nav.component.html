@@ -25,6 +25,11 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Araç Kiralama</span>
+      <app-profile class="col-md-2 offset-md-8"></app-profile>
+
+      <!-- <div >
+        <button mat-raised-button color="warn" (click)="logOut()" style="margin-left: 120px;">Çıkış Yap</button>
+      </div> -->
       <span style="flex:auto;"></span>
       <mat-slide-toggle [(ngModel)]="isDarkTheme" labelPosition="before" (change)="storeThemeSelection()">
         <mat-icon>bedtime</mat-icon>
