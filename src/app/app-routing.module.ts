@@ -17,12 +17,14 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileEditComponent } from './components/profile/profile-edit/profile-edit.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { UserComponent } from './components/user/user.component';
 import { LoginGuard } from './guards/login.guard';
 
 const appRoutes: Routes = [
   {path:"",redirectTo:"/home",pathMatch:"full"},
   {path:"home",component:HomeComponent},
   {path:"brands",component:BrandComponent},
+  {path:"users",component:UserComponent},
   {path:"colors",component:ColorComponent},
   {path:"cars",component:CarComponent},
   {path:"customers",component:CustomerComponent},

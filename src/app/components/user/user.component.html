@@ -1,0 +1,35 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Ad</th>
+      <th scope="col">Soyad</th>
+      <th scope="col">Email</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td scope="row">{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <form [formGroup]="operationAddForm">
+
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="example-form-select">
+              <mat-label>Yetki Türünü Seçiniz</mat-label>
+              <mat-select formControlName="operationClaimId">
+                <mat-option *ngFor="let claim of operationClaims" id="operationClaimId"  [value]="claim.id">
+                  {{claim.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+      </form>
+      </td>
+      <td><button mat-raised-button color="primary" style="margin-left:350px" (click)="operationClaimAdd(user.id)">Yetki ver</button></td>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
+import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/carDetail';
 import { Color } from 'src/app/models/color';
 import { AuthService } from 'src/app/services/auth.service';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
+import { ClaimControlService } from 'src/app/services/claim-control.service';
 import { ColorService } from 'src/app/services/color.service';
 import { environment } from 'src/environments/environment';
 
@@ -28,8 +31,10 @@ export class CarComponent implements OnInit {
   constructor(private carService:CarService,
     private activatedRoute:ActivatedRoute,
     public authService:AuthService,
+    public claimControlService:ClaimControlService,
     private route:Router,
     private brandService:BrandService,
+    private toastrService:ToastrService,
     private colorService:ColorService
     ) { }
 
@@ -69,7 +74,6 @@ export class CarComponent implements OnInit {
     this.carService.getCarsByBrand(brandId).subscribe(response => {
       this.cars = response.data;
       this.cars.length == 0 ? this.control = true : false;
-      console.log(this.control);
     })
   }
 
@@ -109,6 +113,15 @@ export class CarComponent implements OnInit {
   {
     this.carService.getCarsByFilter(this.selectedBrand,this.selectedColor).subscribe(response => {
       this.cars = response.data;
+    })
+  }
+
+  deleteCar(car:CarDetail){
+    let carr:Car = new Car();
+    carr.id = car.id;
+    this.carService.delete(carr).subscribe(res => {
+      this.getCars();
+      this.toastrService.info(res.message,"Başarılı");
     })
   }
 

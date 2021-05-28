@@ -11,7 +11,7 @@
           <form [formGroup]="firstFormGroup">
               <div class="row-1">
                   <div class="row row-2"> <span id="card-inner">Şirket Adı</span> </div>
-                  <div class="row row-2"> <input type="text" placeholder="Örn Kazanlar" formControlName="companyName"> </div>
+                  <div class="row row-2"> <input type="text" placeholder="Örn Kazanlar" formControlName="companyName" [(ngModel)]="customer.companyName"> </div>
               </div>
                <span id="card-header" style="color:black;">Aracı Kiralayacağınız Tarih:</span>
               <div class="row-1">
@@ -52,11 +52,6 @@
             </div>
           </div>
 
-            <!-- <div class="row row-1">
-                <div class="col-2"><img class="img-fluid" src="https://img.icons8.com/color/48/000000/visa.png" /></div>
-                <div class="col-7"> <input type="text" placeholder="**** **** **** 4296"> </div>
-                <div class="col-3 d-flex justify-content-center"> <a href="#">Kartı Sil</a> </div>
-            </div>  -->
             <span id="card-header" style="color:black;">Yeni Kart İle Ödeme Yap:</span>
             <div class="row-1">
                 <div class="row row-2"> <span id="card-inner">Kart Sahibi</span> </div>

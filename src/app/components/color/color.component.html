@@ -1,18 +1,3 @@
-<!-- <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Marka</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let color of colors">
-      <td scope="row">{{color.id}}</td>
-      <td>{{color.name}}</td>
-    </tr>
-  </tbody>
-</table> -->
-
 <div class="container col-md-10">
 
   <div class="mb-3 col-md-11">
@@ -24,7 +9,7 @@
   </div>
 
   <div class="col-md-11 mb-3" >
-    <button *ngIf="authService.roleControl() == true" mat-flat-button color="primary"  routerLink="/colors/add">Renk Ekle</button>
+    <button *ngIf="claimControlService.checkRoleColorAdd()"  mat-flat-button color="primary"  routerLink="/colors/add">Renk Ekle</button>
   </div>
 
   <div class="row col-md-11">
@@ -35,7 +20,8 @@
             <p class="pt-2">{{color.name}}</p>
           </div>
           <div class="col-md-3">
-           <button *ngIf="authService.roleControl() == true" mat-flat-button color="primary" style="float:right"routerLink="/colors/{{color.id}}/edit">Güncelle</button>
+           <button *ngIf="claimControlService.checkRoleColorUpdate()" mat-flat-button color="primary" routerLink="/colors/{{color.id}}/edit">Güncelle</button>
+           <button *ngIf="claimControlService.checkRoleColorDelete()" mat-flat-button color="primary" style="float:right" (click)="deleteColor(color)">Sil</button>
           </div>
         </div>
 

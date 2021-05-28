@@ -64,13 +64,13 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
   ngOnInit() {
       this.customer.id = Number(localStorage.getItem("customerId"));
       this.getCustomerByRegisterCreditCard(this.customer.id);
+      this.getCustomerByUserId();
       this.createAddForm();
       this.activatedRoute.params.subscribe((parameter) => {
         if (parameter["carId"]) {
             this.getCar(parameter["carId"]);
         }
       })
-
   }
 
   open(content:any) {
@@ -131,6 +131,12 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
     this.customer.userId = parseInt(this.authService.getCurrentUser().nameid);
     this.customer.companyName = this.firstFormGroup.controls['companyName'].value;
     return this.customerService.add(this.customer);
+  }
+
+  getCustomerByUserId(){
+    this.customerService.getCustomerByUserId(this.authService.getCurrentUser().nameid).subscribe(res => {
+      this.customer = res.data;
+    })
   }
 
   addRental()
@@ -229,8 +235,5 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
       this.creditCards = response.data
     })
   }
-
-
-
 
 }

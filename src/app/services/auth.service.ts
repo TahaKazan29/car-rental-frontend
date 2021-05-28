@@ -19,17 +19,12 @@ export class AuthService {
   apiUrl = "https://localhost:44318/api/auth/";
   jwtHelper:JwtHelperService = new JwtHelperService();
   decodedToken:any;
-  role:string[] = [];
 
   constructor(private httpClient:HttpClient,
     private router:Router,
     private toastrService:ToastrService,
-    private customerService:CustomerService,
-    private userService:UserService)
+    private customerService:CustomerService)
     {
-      if (this.isAuthenticated()) {
-        this.getRole();
-      }
     }
 
   login(loginModel:TokenModel)
@@ -40,7 +35,6 @@ export class AuthService {
       this.router.navigate(["cars"]);
       this.toastrService.info(response.message);
       localStorage.setItem('token',response.data.token);
-      this.getRole();
       this.customerService.getCustomerByUserId(this.getCurrentUser().nameid).subscribe(response => {
         if (response.data) {
           localStorage.setItem("customerId",response.data.id.toString())
@@ -85,26 +79,5 @@ export class AuthService {
   updatePassword(passwordChange:PasswordChange):Observable<ResponseModel>{
     let newPath = this.apiUrl + "changepassword"
     return this.httpClient.put<ResponseModel>(newPath,passwordChange)
-  }
-
-  getRole()
-  {
-    this.userService.getClaim(this.getCurrentUser().nameid).subscribe(response => {
-      this.role = response.data.map(r => r.name);
-    })
-  }
-
-  roleControl()
-  {
-      let role = this.role
-      let lenght = role.length;
-      for (let i = 0; i <= lenght; i++) {
-        const element = role[i];
-        if (element == 'admin' || element == 'car.update') {
-          return true;
-        }
-        else {return false;}
-      }
-      return;
   }
 }

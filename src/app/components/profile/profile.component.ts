@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { OperationClaim } from 'src/app/models/operationClaim';
 import { UserDetail } from 'src/app/models/userDetail';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -12,11 +13,13 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit,OnChanges {
+export class ProfileComponent implements OnInit {
 
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   user:UserDetail;
   userId:number;
+  roles:OperationClaim[];
+  isAdmin:boolean;
   constructor( private toastrService:ToastrService,
     private router:Router,
     private userService:UserService,
@@ -24,12 +27,9 @@ export class ProfileComponent implements OnInit,OnChanges {
     public dialog: MatDialog) { }
 
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.getUser();
-
-  }
-
   ngOnInit(): void {
+    this.getUser();
+    this.getRole();
   }
 
   getUser()
@@ -37,6 +37,23 @@ export class ProfileComponent implements OnInit,OnChanges {
     this.userService.getUser(this.authService.getCurrentUser().nameid).subscribe(response => {
       this.user = response.data;
     })
+  }
+
+  getRole(){
+    this.userService.getClaim(this.authService.getCurrentUser().nameid).subscribe(res => {
+      this.roles = res.data;
+      this.checkRoles();
+    })
+  }
+
+  checkRoles(){
+    var result = this.roles.find(r => r.name == "admin");
+    if(result != null) {
+     this.isAdmin = true;
+    }
+    else {
+      this.isAdmin = false;
+    }
   }
 
 

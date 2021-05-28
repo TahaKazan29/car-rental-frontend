@@ -59,6 +59,8 @@ import { MDBBootstrapModule, DropdownModule } from 'angular-bootstrap-md';
 import { ModalModule, TooltipModule, PopoverModule, ButtonsModule } from 'angular-bootstrap-md'
 import { LocalStroageService } from './services/localStroage.service';
 import { AuthService } from './services/auth.service';
+import { UserComponent } from './components/user/user.component';
+import { ClaimControlService } from './services/claim-control.service';
 
 
 @NgModule({
@@ -88,6 +90,7 @@ import { AuthService } from './services/auth.service';
     RegisterComponent,
     ProfileComponent,
     ProfileEditComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

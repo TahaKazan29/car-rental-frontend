@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
-
-
+import { ClaimControlService } from 'src/app/services/claim-control.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -23,7 +19,7 @@ export class NavComponent implements OnInit {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,
-    public loaderService: LoaderService) { }
+    public loaderService: LoaderService,public claimControlService:ClaimControlService) { }
 
   ngOnInit() {
     this.isDarkTheme = localStorage.getItem('theme') === "Dark" ? true : false;

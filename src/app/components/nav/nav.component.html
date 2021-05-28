@@ -9,6 +9,7 @@
       <a mat-list-item routerLink="/brands">Markalar</a>
       <a mat-list-item routerLink="/colors">Renkler</a>
       <a mat-list-item routerLink="/customers">Müşteriler</a>
+      <a *ngIf="claimControlService.checkRolePlay()" mat-list-item routerLink="/users">Kullanıcılar</a>
 
     </mat-nav-list>
   </mat-sidenav>
@@ -27,9 +28,6 @@
       <span>Araç Kiralama</span>
       <app-profile class="col-md-2 offset-md-8"></app-profile>
 
-      <!-- <div >
-        <button mat-raised-button color="warn" (click)="logOut()" style="margin-left: 120px;">Çıkış Yap</button>
-      </div> -->
       <span style="flex:auto;"></span>
       <mat-slide-toggle [(ngModel)]="isDarkTheme" labelPosition="before" (change)="storeThemeSelection()">
         <mat-icon>bedtime</mat-icon>

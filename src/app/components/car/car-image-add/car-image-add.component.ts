@@ -47,8 +47,17 @@ export class CarImageAddComponent implements OnInit,OnChanges {
       file.withCredentials = false;
     }
 
+    this.uploader.onErrorItem = (item:FileItem, response:string, status: number, headers: any) => {
+      if(this.carId == null){
+        this.toastrService.error("Önce aracı eklemeniz gerekir","Başarısız");
+      }
+      else {
+        this.toastrService.error("En fazla 5 adet resim yüklenebilir","Başarısız");
+      }
+    }
+
     this.uploader.onSuccessItem = (item:FileItem, response:string, status: number, headers: any) => {
-      this.toastrService.success("Resim Eklendi","Başarılı");
+        this.toastrService.success("Resim Eklendi","Başarılı");
     };
   }
 }

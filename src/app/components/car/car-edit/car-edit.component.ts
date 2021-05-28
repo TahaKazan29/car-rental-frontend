@@ -51,23 +51,7 @@ export class CarEditComponent implements OnInit {
     })
   }
 
-  // getColor()
-  // {
-  //   this.colorService.getColors().subscribe(data=>{
-  //     this.colors = data.data;
-  //   })
-  // }
-
-  // getBrandById(brandId:number)
-  // {
-  //   this.brandService.getBrands().subscribe(data=>{
-  //     this.brands = data.data;
-  //   })
-  // }
-
-
   update(){
-    // console.log(this.colors.id)
     this.carService.update(this.car).subscribe(response => {
        this.toastrService.success("Güncelleme Başarılı","Başarılı");
      },responseError => {

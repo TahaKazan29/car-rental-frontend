@@ -8,7 +8,7 @@
     {{authService.getCurrentUser().unique_name}}</button>
   <mat-menu #menu="matMenu">
 
-    <button *ngIf="authService.role.length > 0" mat-menu-item><span style="margin-left: 25px;">{{authService.role[0] | titlecase }}</span></button>
+    <button *ngIf="isAdmin" mat-menu-item><span style="margin-left: 25px;"> Admin </span></button>
 
     <button mat-menu-item routerLink="/profileEdit">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" style="margin-right: 5px;" viewBox="0 0 16 16">

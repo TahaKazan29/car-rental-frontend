@@ -1,30 +1,4 @@
- <!-- <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Marka</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let brand of brands">
-      <td scope="row">{{brand.id}}</td>
-      <td>{{brand.name}}</td>
-    </tr>
-  </tbody>
-</table> -->
-
-<!-- <mat-selection-list #shoes [multiple]="false">
-  <mat-list-option *ngFor="let brand of brands">
-    {{brand.name}}
-  </mat-list-option>
-</mat-selection-list> -->
-<!--
-<div class="container">
-  <div class="col-md-9 ">
-    <mat-card *ngFor="let brand of brands" class="mt-1">{{brand.name}}</mat-card>
-  </div>
-</div> -->
-<div class="container col-md-10">
+ <div class="container col-md-10">
 
   <div class="mb-3 col-md-11">
     <h2 class="form-label mt-3">Marka ara</h2>
@@ -35,7 +9,7 @@
   </div>
 
   <div class="col-md-11">
-    <button *ngIf="authService.roleControl() == true" mat-flat-button color="primary"  routerLink="/brands/add">Marka Ekle</button>
+    <button *ngIf="claimControlService.checkRoleBrandAdd()" mat-flat-button color="primary"  routerLink="/brands/add">Marka Ekle</button>
   </div>
 
     <div class="row">
@@ -45,9 +19,10 @@
           <mat-card-subtitle>Kiralık {{brand.name}} Araçları</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image [src]="brand.image">
-          <button mat-raised-button color="primary" routerLink="/cars/brand/{{brand.id}}">Görüntüle</button>
-          <button *ngIf="authService.roleControl() == true" mat-raised-button color="primary" style="float:right" routerLink="/cars/brand/{{brand.id}}/edit">Güncelle</button>
-      </mat-card>
+          <button mat-raised-button color="primary" style="margin-right: 35px;" routerLink="/cars/brand/{{brand.id}}">Görüntüle</button>
+          <button *ngIf="claimControlService.checkRoleBrandUpdate()" mat-raised-button color="primary" routerLink="/cars/brand/{{brand.id}}/edit">Güncelle</button>
+          <button *ngIf="claimControlService.checkRoleBrandDelete()" mat-raised-button color="primary" style="float: right;" (click)="deleteBrand(brand)">Sil</button>
+        </mat-card>
   </div>
 </div>
 

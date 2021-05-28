@@ -15,20 +15,11 @@ import { RentalService } from 'src/app/services/rental.service';
 export class RentalComponent implements OnInit {
 
   rentals:Rental[] = [];
-  // car:Car;
-  // customer:Customer;
 
-  constructor(private rentalService:RentalService,private carService:CarService,private customerService:CustomerService,private activatedRoute:ActivatedRoute) { }
+
+  constructor(private rentalService:RentalService) { }
 
   ngOnInit(): void {
-    // this.activatedRoute.params.subscribe((parameter) => {
-    //   if (parameter['carId']) {
-    //     this.getCar(parameter['carId']);
-    //   }
-    //   if(parameter['customerId']) {
-    //     this.getCustomer(parameter['custtomerId']);
-    //   }
-    // });
     this.getRentals();
   }
 
@@ -38,23 +29,4 @@ export class RentalComponent implements OnInit {
       this.rentals = response.data;
     })
   }
-
-  // getCar(carId:number)
-  // {
-  //   this.carService.getCarsForDetail(carId).subscribe(response => {
-  //     this.car = response.data;
-  //   })
-  // }
-
-  // getCustomer(customerId:number){
-  //   this.customerService.getCustomer(customerId).subscribe(response => {
-  //     this.customer = response.data;
-  //   })
-  // }
-
-  // addRental(rental:Rental)
-  // {
-  //   this.rentalService.addRental(rental);
-  // }
-
 }
