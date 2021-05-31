@@ -83,9 +83,12 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
 
   cardRegistrationQuestion(contentt:any)
   {
-    if (this.control) {
+    timer(500).subscribe(p=> {
+      if (this.control) {
       this.modalService.open(contentt);
     }
+    })
+
   }
 
   createAddForm()
@@ -128,6 +131,7 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
 
   addCustomer()
   {
+    this.customer = new Customer();
     this.customer.userId = parseInt(this.authService.getCurrentUser().nameid);
     this.customer.companyName = this.firstFormGroup.controls['companyName'].value;
     return this.customerService.add(this.customer);
@@ -182,7 +186,7 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
     })
     timer(500).subscribe(p => {
       if (this.findeksValue >= this.car.findeksValue) {
-        if (this.customer.id == 0)
+        if (this.customer == null)
       {
         this.addCustomer().subscribe(response => {
           this.customer.id = response.data.id
@@ -192,7 +196,7 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
       timer(500).subscribe(p => {
         this.addRental().subscribe(response => {
           this.rental.id = response.data.id;
-          timer(1000).subscribe(p => {
+          timer(800).subscribe(p => {
             this.bank = Object.assign({},this.secondFormGroup.value);
             this.bank.rentId = this.rental.id;
             this.bankService.addBank(this.bank).subscribe(response => {
@@ -200,6 +204,7 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
             })
           })
         },err => {
+          this.control = false;
           this.toastrService.error(err.error.message,"Başarısız");
           this.router.navigate(['/cars'])
         })
@@ -209,7 +214,7 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
       else
       {
         this.control = false;
-        this.toastrService.error("Üzügüm Findeks Puanınız Bu Aracı Kiralamak İçin Yeterli Değil","Başarısız")
+        this.toastrService.error("Üzügünüm Findeks Puanınız Bu Aracı Kiralamak İçin Yeterli Değil","Başarısız")
         this.router.navigate(['/cars'])
       }
     })
@@ -219,7 +224,7 @@ export class HireComponent implements OnInit,OnChanges,OnDestroy{
   {
     let newCart:RegisteredCreditCard = new RegisteredCreditCard;
     newCart = Object.assign({},this.secondFormGroup.value);
-    newCart.customerId = this.customer.id
+    newCart.customerId = this.customer.id;
     this.registeredCreditCard.add(newCart).subscribe(response => {
       this.getCustomerByRegisterCreditCard(this.customer.id);
       this.toastrService.info("Kredi Kartınız Kayıt Edildi","Başarılı")
