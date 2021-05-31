@@ -58,10 +58,15 @@
 
 ![19](https://user-images.githubusercontent.com/74051388/113344970-79748e00-933a-11eb-9a34-01d9c2e3996b.png)
 
-### Non-administrators cannot add, delete or update
+### Admin or unauthorized persons cannot add, delete, update operations.
 
 ![20](https://user-images.githubusercontent.com/74051388/113345898-cd33a700-933b-11eb-8556-1b42086de167.png)
 
+### The administrator can authorize , the authorized person can perform that operation
+
+![21](https://user-images.githubusercontent.com/74051388/120018211-85ee2d80-bfef-11eb-83f1-a596f323dd60.png)
+
+![22](https://user-images.githubusercontent.com/74051388/120018257-97cfd080-bfef-11eb-8d1f-75eb6297fae7.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 
